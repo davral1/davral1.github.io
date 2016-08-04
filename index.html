@@ -19,27 +19,27 @@
    <div id="map"></div>
    <script>
 
-      // var map = L.map('map',{
-      // center: [52.874103, -1.0883331],
-      // zoom: 15
-      // });
+      var map = L.map('map',{
+      center: [52.874103, -1.0883331],
+      zoom: 15
+      });
 
       // L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
       // attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
       // }).addTo(map);
 
-   L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-   attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-   }).addTo(map);
+      L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+      }).addTo(map);
 
-   map.invalidateSize();
+      map.invalidateSize();
 
-   for ( var i=0; i < markers.length; ++i ) 
-   {
-      L.marker( [markers[i].lat, markers[i].lng] )
+      for ( var i=0; i < markers.length; ++i ) 
+      {
+         L.marker( [markers[i].lat, markers[i].lng] )
          .bindPopup( '<a href="' + markers[i].url + '" target="_blank">' + markers[i].name + '</a>' )
          .addTo( map );
-   }
+      }
 
    </script>
    
