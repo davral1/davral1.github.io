@@ -1,47 +1,73 @@
+<!DOCTYPE html>
 <html>
 <head>
-   <title>BGS</title>   
-   <!--
-   Point at local js & CSS
-   This assumes there's a directory 'leaflet' alongside this HTML (*download* and unzip leaflet)
-   -->
-   <script src="https://npmcdn.com/leaflet@1.0.0-rc.2/dist/leaflet.js"></script>
-   <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
+<style>
+.flex-container {
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-flow: row wrap;
+    flex-flow: row wrap;
+    text-align: center;
+}
 
+.flex-container > * {
+    padding: 15px;
+    -webkit-flex: 1 100%;
+    flex: 1 100%;
+}
+
+.article {
+    text-align: left;
+}
+
+header {background: black;color:white;}
+footer {background: #aaa;color:white;}
+.nav {background:#eee;}
+
+.nav ul {
+    list-style-type: none;
+ padding: 0;
+}
    
-  
-   <style>
-   #map { height: 180px; border: 1px solid #AAA;}
-   </style>
+.nav ul a {
+ text-decoration: none;
+}
+
+@media all and (min-width: 768px) {
+    .nav {text-align:left;-webkit-flex: 1 auto;flex:1 auto;-webkit-order:1;order:1;}
+    .article {-webkit-flex:5 0px;flex:5 0px;-webkit-order:2;order:2;}
+    footer {-webkit-order:3;order:3;}
+}
+</style>
 </head>
 <body>
 
-   <div id="map"></div>
-   <script>
+<div class="flex-container">
+<header>
+  <h1>City Gallery</h1>
+</header>
 
-      var map = L.map('map',{
-      center: [52.874103, -1.0883331],
-      zoom: 10
-      });
+<nav class="nav">
+<ul>
+  <li><a href="#">London</a></li>
+  <li><a href="#">Paris</a></li>
+  <li><a href="#">Tokyo</a></li>
+</ul>
+</nav>
 
-      L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-      attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-      }).addTo(map);
+<article class="article">
+  <h1>London</h1>
+  <p>London is the capital city of England. It is the most populous city in the United Kingdom,
+  with a metropolitan area of over 13 million inhabitants.</p>
+  <p>Standing on the River Thames, London has been a major settlement for two millennia,
+  its history going back to its founding by the Romans, who named it Londinium.</p>
+  <p><strong>Resize this page to see that what happens!</strong></p>
+</article>
 
+<footer>Copyright © W3Schools.com</footer>
+</div>
 
-
-      map.invalidateSize();
-
-      for ( var i=0; i < markers.length; ++i ) 
-      {
-         L.marker( [markers[i].lat, markers[i].lng] )
-         .bindPopup( '<a href="' + markers[i].url + '" target="_blank">' + markers[i].name + '</a>' )
-         .addTo( map );
-      }
-
-   </script>
-   
-
-</body>                                                                                                                          
+</body>
 </html>
-    
+
+
