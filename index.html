@@ -1,6 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
+
+  <!-- Plotly.js -->
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <!-- Numeric JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/numeric/1.2.6/numeric.min.js"></script>
+
 <style>
 .flex-container {
     display: -webkit-flex;
@@ -68,6 +74,50 @@ footer {background: #aaa;color:white;}
    <p>The analysis indicates that projected climate change may result in significant environmental change to the giant panda’s current geographical range. These impacts are likely to effect the distribution of panda habitat in the near future. Conservation strategies must incorporate possible climate change impacts in order to adapt and move reserves to more suitable areas.</p>
   
   <img src="current_map.jpg" alt="Current map" style="width:304px;height:228px;">
+
+  <div id="myDiv" style="width: 480px; height: 400px;"><!-- Plotly chart will be drawn inside this DIV --></div>
+  <script>
+
+  var data = [{
+  values: [2, 733, 4203, 1724, 217, 3952, 4262, 17, 26],
+  labels: ['D. Extremely cold and wet', 
+           'F. Extremely cold and mesic',
+           'G. Cold and mesic',
+           'H. Cool temperate and dry',
+           'I. Cool temperate and xeric',
+           'J. Cool temperate and moist',
+           'K. Warm temperate and mesic',
+           'L. Warm temperate and xeric',
+           'N. Hot and dry'],
+  domain: {
+    x: [0, .48]
+  },
+  name: 'GHG Emissions',
+  hoverinfo: 'label+percent+name',
+  hole: .4,
+  type: 'pie'
+  }
+
+  var layout = {
+  title: 'Global Emissions 1990-2011',
+  annotations: [
+    {
+      font: {
+        size: 14
+      },
+      showarrow: false,
+      text: 'GHG',
+      x: 0.17,
+      y: 0.5
+    }
+  ],
+  height: 400,
+  width: 480
+  };
+
+  Plotly.newPlot('myDiv', data, layout);
+
+  </script>
 
   <h1 id="2050">2050 Climate Stratification</h1>
 
