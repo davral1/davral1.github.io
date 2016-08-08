@@ -75,49 +75,12 @@ footer {background: #aaa;color:white;}
   
   <img src="current_map.jpg" alt="Current map" style="width:304px;height:228px;">
 
-  <div id="myDiv" style="width: 480px; height: 400px;"><!-- Plotly chart will be drawn inside this DIV --></div>
-  <script>
+  <div>
+    <a href="https://plot.ly/~davral1/1/" target="_blank" title="" style="display: block; text-align: center;"><img src="https://plot.ly/~davral1/1.png" alt="" style="max-width: 100%;width: 860px;"  width="860" onerror="this.onerror=null;this.src='https://plot.ly/404.png';" /></a>
+    <script data-plotly="davral1:1"  src="https://plot.ly/embed.js" async></script>
+  </div>
 
-    var data = [{
-    values: [2, 733, 4203, 1724, 217, 3952, 4262, 17, 26],
-    labels: ['D. Extremely cold and wet', 
-              'F. Extremely cold and mesic',
-              'G. Cold and mesic',
-              'H. Cool temperate and dry',
-              'I. Cool temperate and xeric',
-              'J. Cool temperate and moist',
-              'K. Warm temperate and mesic',
-              'L. Warm temperate and xeric',
-              'N. Hot and dry'],
-    domain: {
-      x: [0, .48]
-    },
-    name: 'GHG Emissions',
-    hoverinfo: 'label+percent+name',
-    hole: .4,
-    type: 'pie'
-    }
 
-    // var layout = {
-    // title: 'Global Emissions 1990-2011',
-    // annotations: [
-    //   {
-    //     font: {
-    //       size: 14
-    //     },
-    //     showarrow: false,
-    //     text: 'GHG',
-    //     x: 0.17,
-    //     y: 0.5
-    //   }
-    // ],
-    // height: 400,
-    // width: 480
-    // };
-
-    Plotly.newPlot('myDiv', data);
-
-  </script>
 
   <h1 id="2050">2050 Climate Stratification</h1>
 
