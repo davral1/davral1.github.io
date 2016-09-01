@@ -3,9 +3,7 @@
 	<head>
 
 	<!-- Mapbox Styles -->
-    <link rel="stylesheet" href="style.css" />
-    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.5/leaflet.css" />
-    <link rel="stylesheet" href="../src/leaflet.usermarker.css" />
+
     <link rel="stylesheet" href="https://npmcdn.com/leaflet@1.0.0-rc.3/dist/leaflet.css" />
     
 
@@ -34,11 +32,9 @@
 
     <div id="map"></div>
 
-    <a href="https://github.com/heyman/leaflet-usermarker"><img style="position:absolute; top:0; right:0; border:0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" alt="Fork me on GitHub"></a>
 
     <script src="https://npmcdn.com/leaflet@1.0.0-rc.3/dist/leaflet.js"></script>
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
-    <script src="../src/leaflet.usermarker.js"></script>
+
 
 
     <!-- Site JS -->
@@ -54,23 +50,7 @@
             id: 'mapbox.streets'
         }).addTo(mymap);
 
-        var marker = L.marker([51.505, -0.09]).addTo(mymap);
 
-        var marker = null;
-        $("#marker").click(function() {
-            mymap.on("locationfound", function(location) {
-                if (!marker)
-                    marker = L.userMarker(location.latlng, {pulsing:true}).addTo(mymap);
-                
-                marker.setLatLng(location.latlng);
-                marker.setAccuracy(location.accuracy);
-            });
-            map.locate({
-                watch: false,
-                locate: true,
-                setView: true,
-                enableHighAccuracy: true
-        });
 
     </script>
 
