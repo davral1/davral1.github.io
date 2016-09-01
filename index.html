@@ -41,23 +41,6 @@
             id: 'mapbox.streets'
         }).addTo(mymap);
 
-        $(button).on('click', function() {
-            enableAddMarker();
-        }
-
-        function enableAddMarker() {
-            map.on('click', addMarker)
-        }
-
-        function addMarker(e) {
-            var Marker = L.marker(e.latlng,{
-                draggable: true
-            })
-            Marker.addTo(map);
-            map.off('click', addMarker);
-
-        }
-
     </script>
 
 	</body>
