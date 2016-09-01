@@ -3,6 +3,9 @@
 	<head>
 
 	<!-- Mapbox Styles -->
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.5/leaflet.css" />
+    <link rel="stylesheet" href="../src/leaflet.usermarker.css" />
     <link rel="stylesheet" href="https://npmcdn.com/leaflet@1.0.0-rc.3/dist/leaflet.css" />
     
 
@@ -20,12 +23,20 @@
       <h1>Wild Camp</h1>
     </div>
 
-    <button>Click to add a single marker</button>
+    <div>
+
+        <button id="marker">Click to add a single marker</button>
+
+    </div>
+
+    <a href="https://github.com/heyman/leaflet-usermarker"><img style="position:absolute; top:0; right:0; border:0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" alt="Fork me on GitHub"></a>
+
 
     <div id="map"></div>
 
     <script src="https://npmcdn.com/leaflet@1.0.0-rc.3/dist/leaflet.js"></script>
-    <script src="jquery-2.1.1.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+    <script src="../src/leaflet.usermarker.js"></script>
 
 
     <!-- Site JS -->
@@ -43,22 +54,21 @@
 
         var marker = L.marker([51.505, -0.09]).addTo(mymap);
 
-        $(button).on('click', function() {
-            enableAddMarker();
-        }
-
-        function enableAddMarker() {
-            mymap.on('click', addMarker)
-        }
-
-        function addMarker(e) {
-            var marker = L.marker(e.latlng,{
-                draggable: true
-            })
-            marker.addTo(mymap);
-            mymap.off('click', addMarker);
-
-        }
+        var marker = null;
+        $("#marker").click(function() {
+            mymap.on("locationfound", function(location) {
+                if (!marker)
+                    marker = L.userMarker(location.latlng, {pulsing:true}).addTo(mymap);
+                
+                marker.setLatLng(location.latlng);
+                marker.setAccuracy(location.accuracy);
+            });
+            map.locate({
+                watch: false,
+                locate: true,
+                setView: true,
+                enableHighAccuracy: true
+            });
 
     </script>
 
