@@ -43,6 +43,23 @@
 
         var marker = L.marker([51.505, -0.09]).addTo(mymap);
 
+        $(button).on('click', function() {
+            enableAddMarker();
+        }
+
+        function enableAddMarker() {
+            mymap.on('click', addMarker)
+        }
+
+        function addMarker(e) {
+            var marker = L.marker(e.latlng,{
+                draggable: true
+            })
+            marker.addTo(mymap);
+            mymap.off('click', addMarker);
+
+        }
+
     </script>
 
 	</body>
