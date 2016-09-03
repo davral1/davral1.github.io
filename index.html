@@ -6,9 +6,20 @@
 
     
     <link rel="stylesheet" href="https://npmcdn.com/leaflet@1.0.0-rc.3/dist/leaflet.css" />
-    <link rel="stylesheet" href="lib/Control.SimpleMarkers.css" />
+    <link rel="stylesheet" href="../dist/leaflet.draw.css" />
     <script src="https://npmcdn.com/leaflet@1.0.0-rc.3/dist/leaflet.js"></script>
-    <script src="lib/Control.SimpleMarkers.js"></script>
+
+    <script src="../src/Leaflet.draw.js"></script>
+    <script src="../src/draw/handler/Draw.Marker.js"></script>
+    <script src="../src/Control.Draw.js"></script>
+    <script src="../src/Tooltip.js"></script>
+    <script src="../src/Toolbar.js"></script>
+
+    <script src="../src/draw/DrawToolbar.js"></script>
+    <script src="../src/edit/EditToolbar.js"></script>
+    <script src="../src/edit/handler/EditToolbar.Edit.js"></script>
+    <script src="../src/edit/handler/EditToolbar.Delete.js"></script>
+
 
 	</head>
 
@@ -30,6 +41,7 @@
 
 
     <div id="map"></div>
+    <button id="changeColor">Rectangle -> Blue</button>
 
 
 
@@ -46,8 +58,47 @@
             id: 'mapbox.streets'
         }).addTo(map);
 
-        var marker_controls = new L.Control.SimpleMarkers();
-        map.addControl(marker_controls);
+
+        var drawnItems = new L.FeatureGroup();
+        map.addLayer(drawnItems);
+        // Set the title to show on the polygon button
+        L.drawLocal.draw.toolbar.buttons.polygon = 'Draw a sexy polygon!';
+        var drawControl = new L.Control.Draw({
+            position: 'topright',
+            draw: {
+                polyline: false,
+                polygon: false,
+                circle: false,
+                marker: true
+            },
+            edit: {
+                featureGroup: drawnItems,
+                remove: true
+            }
+        });
+        map.addControl(drawControl);
+        map.on('draw:created', function (e) {
+            var type = e.layerType,
+                layer = e.layer;
+            if (type === 'marker') {
+                layer.bindPopup('A popup!');
+            }
+            drawnItems.addLayer(layer);
+        });
+        map.on('draw:edited', function (e) {
+            var layers = e.layers;
+            var countOfEditedLayers = 0;
+            layers.eachLayer(function(layer) {
+                countOfEditedLayers++;
+            });
+            console.log("Edited " + countOfEditedLayers + " layers");
+        });
+        L.DomUtil.get('changeColor').onclick = function () {
+            drawControl.setDrawingOptions({ rectangle: { shapeOptions: { color: '#004a80' } } });
+        };
+
+
+
 
 
 
