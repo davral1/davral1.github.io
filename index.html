@@ -6,7 +6,9 @@
 
     
     <link rel="stylesheet" href="https://npmcdn.com/leaflet@1.0.0-rc.3/dist/leaflet.css" />
+    <link rel="stylesheet" href="lib/Control.SimpleMarkers.css" />
     <script src="https://npmcdn.com/leaflet@1.0.0-rc.3/dist/leaflet.js"></script>
+    <script src="lib/Control.SimpleMarkers.js"></script>
 
 	</head>
 
@@ -43,6 +45,9 @@
                 'Imagery © <a href="http://mapbox.com">Mapbox</a>',
             id: 'mapbox.streets'
         }).addTo(map);
+
+        var marker_controls = new L.Control.SimpleMarkers();
+        map.addControl(marker_controls);
 
 
 
