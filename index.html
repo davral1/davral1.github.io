@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.0-rc.3/dist/leaflet.css" />
 
 
-    <script src="https://unpkg.com/leaflet@1.0.0-rc.3/dist/leaflet.js"></script>
+    
 
 
 
@@ -37,6 +37,8 @@
 
     <div id="mapid"></div>
 
+    <script src="https://unpkg.com/leaflet@1.0.0-rc.3/dist/leaflet.js"></script>
+
 
 
 
@@ -44,13 +46,13 @@
     <!-- Site JS -->
     <script>
 
-    L.mapbox.accessToken = 'pk.eyJ1IjoiZGF2cmFsMSIsImEiOiJjaXJnbnY0NGYwMDJuaWRtaGo2NXRxcDBtIn0.EsbDQMWN4Hw9SyWwXekIXA';
+        L.mapbox.accessToken = 'pk.eyJ1IjoiZGF2cmFsMSIsImEiOiJjaXJnbnY0NGYwMDJuaWRtaGo2NXRxcDBtIn0.EsbDQMWN4Hw9SyWwXekIXA';
 
-    var map = L.map('mapid').setView([51.505, -0.09], 13);
+        var map = L.map('mapid').setView([51.505, -0.09], 13);
 
-    L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/outdoors-v9/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZGF2cmFsMSIsImEiOiJjaXJnbnY0NGYwMDJuaWRtaGo2NXRxcDBtIn0.EsbDQMWN4Hw9SyWwXekIXA', {
-        attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-    }).addTo(map);
+        L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/outdoors-v9/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZGF2cmFsMSIsImEiOiJjaXJnbnY0NGYwMDJuaWRtaGo2NXRxcDBtIn0.EsbDQMWN4Hw9SyWwXekIXA', {
+            attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
     
 
         
