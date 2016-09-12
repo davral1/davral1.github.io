@@ -39,6 +39,11 @@
 
     <div id="mapid"></div>
 
+    <div id="controls">
+        <input type="button" onclick="startEdits()" value="Click to Start Editing">
+        <input type="button" onclick="stopEdits()" value="Stop Your Editing Session"><br>
+    </div>
+
     <script src="https://unpkg.com/leaflet@1.0.0-rc.3/dist/leaflet.js"></script>
     <script src='https://api.mapbox.com/mapbox.js/v2.4.0/mapbox.js'></script>
     <script src="http://leaflet.github.io/Leaflet.draw/leaflet.draw.js"></script>
@@ -112,9 +117,6 @@
 
 
     </script>
-
-    <input type="button" onclick="startEdits()" value="Click to Start Editing">
-    <input type="button" onclick="stopEdits()" value="Stop Your Editing Session">
 
 	</body>
 
