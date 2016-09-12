@@ -8,6 +8,8 @@
 
     
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.0-rc.3/dist/leaflet.css" />
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
+    <link rel="stylesheet" type="text/css" href="css/style.css">
 
     <link rel="stylesheet" href="http://leaflet.github.io/Leaflet.draw/leaflet.draw.css" />
 
@@ -28,25 +30,27 @@
 
 	<body>
 
-	<div>
-      <h1>Wild Camp</h1>
+    <div id="wrapper">
+
+	   <div id="header"><h1>Wild Camp</h1></div>
+
+
+
+
+
+
+        <div id="mapid"></div>
+
+        <div id="controls">
+            <input type="button" onclick="startEdits()" value="Click to Start Editing">
+            <input type="button" onclick="stopEdits()" value="Stop Your Editing Session"><br>
+        </div>
     </div>
 
-
-
-
-
-
-    <div id="mapid"></div>
-
-    <div id="controls">
-        <input type="button" onclick="startEdits()" value="Click to Start Editing">
-        <input type="button" onclick="stopEdits()" value="Stop Your Editing Session"><br>
-    </div>
-
-    <script src="https://unpkg.com/leaflet@1.0.0-rc.3/dist/leaflet.js"></script>
-    <script src='https://api.mapbox.com/mapbox.js/v2.4.0/mapbox.js'></script>
-    <script src="http://leaflet.github.io/Leaflet.draw/leaflet.draw.js"></script>
+<script src="https://unpkg.com/leaflet@1.0.0-rc.3/dist/leaflet.js"></script>
+<script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+<script src='https://api.mapbox.com/mapbox.js/v2.4.0/mapbox.js'></script>
+<script src="http://leaflet.github.io/Leaflet.draw/leaflet.draw.js"></script>
 
 
 
