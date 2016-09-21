@@ -14,6 +14,9 @@
     <link href='https://api.mapbox.com/mapbox.js/plugins/leaflet-draw/v0.2.3/leaflet.draw.css' rel='stylesheet' />
 
 
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+
+
     
 
 
@@ -65,6 +68,9 @@
     <script src='https://api.mapbox.com/mapbox.js/v2.4.0/mapbox.js'></script>
     <script src='https://api.mapbox.com/mapbox.js/plugins/leaflet-draw/v0.2.3/leaflet.draw.js'></script>
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script> <!-- jQuery v1.11.2 JS -->
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script> <!-- jQueryUI v1.11.4 JS -->
+
 
 
 
@@ -80,6 +86,37 @@
         L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/outdoors-v9/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZGF2cmFsMSIsImEiOiJjaXJnbnY0NGYwMDJuaWRtaGo2NXRxcDBtIn0.EsbDQMWN4Hw9SyWwXekIXA', {
             attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
         }).addTo(map);
+
+
+        // Add Data from CartoDB using the SQL API
+        // Declare Variables
+        // Create Global Variable to hold CartoDB points
+        var cartoDBPoints = null;
+
+        // Set your CartoDB Username
+        var cartoDBusername = {davral1};
+
+        // Write SQL Selection Query to be Used on CartoDB Table
+        // Name of table is 'data_collector'
+        var sqlQuery = "SELECT * FROM data_collector";
+
+        // Get CartoDB selection as GeoJSON and Add to Map
+        function getGeoJSON(){
+          $.getJSON("https://"+cartoDBusername+".cartodb.com/api/v2/sql?format=GeoJSON&q="+sqlQuery, function(data) {
+            cartoDBPoints = L.geoJson(data,{
+              pointToLayer: function(feature,latlng){
+                var marker = L.marker(latlng);
+                marker.bindPopup('' + feature.properties.description + 'Submitted by ' + feature.properties.name + '');
+                return marker;
+              }
+            }).addTo(map);
+          });
+        };
+
+        // Run showAll function automatically when document loads
+        $( document ).ready(function() {
+          getGeoJSON();
+        });
 
 
         // Create Leaflet Draw Control for the draw tools and toolbox
