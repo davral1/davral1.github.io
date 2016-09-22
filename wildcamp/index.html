@@ -115,11 +115,11 @@
 
         // Write SQL Selection Query to be Used on CartoDB Table
         // Name of table is 'data_collector'
-        var sqlQuery = "SELECT * FROM data_collector";
+        var sqlQuery = "SELECT * FROM public.data_collector";
 
         // Get CartoDB selection as GeoJSON and Add to Map
         function getGeoJSON(){
-          $.getJSON("https://"+cartoDBusername+".cartodb.com/api/v2/sql?format=GeoJSON&q="+sqlQuery, function(data) {
+          $.getJSON("https://"+cartoDBusername+".carto.com:443/api/v2/sql?format=GeoJSON&q="+sqlQuery, function(data) {
             cartoDBPoints = L.geoJson(data,{
               pointToLayer: function(feature,latlng){
                 var marker = L.marker(latlng);
