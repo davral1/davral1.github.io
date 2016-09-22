@@ -110,7 +110,7 @@
 
         // Get CartoDB selection as GeoJSON and Add to Map
         function getGeoJSON(){
-          $.getJSON("https://"+cartoDBusername+".cartodb.com/api/v2/sql?format=GeoJSON&q="+sqlQuery, function(data) {
+          $.getJSON("http://"+cartoDBusername+".cartodb.com/api/v2/sql?format=GeoJSON&q="+sqlQuery, function(data) {
             cartoDBPoints = L.geoJson(data,{
               pointToLayer: function(feature,latlng){
                 var marker = L.marker(latlng);
