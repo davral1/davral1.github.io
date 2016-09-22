@@ -19,6 +19,8 @@
 
     <link rel="stylesheet" href="//code.jquery.com/ui/1.8.10/themes/smoothness/jquery-ui.css" type="text/css">
 
+    <link rel="stylesheet" href="http://libs.cartocdn.com/cartodb.js/v3/3.15/themes/css/cartodb.css" />
+
 
 
     
@@ -78,6 +80,9 @@
 
     <script type="text/javascript" src="//ajax.aspnetcdn.com/ajax/jquery.ui/1.8.10/jquery-ui.min.js"></script>
 
+    <script src="http://libs.cartocdn.com/cartodb.js/v3/3.15/cartodb.js"></script>
+
+
 
 
 
@@ -110,7 +115,7 @@
 
         // Get CartoDB selection as GeoJSON and Add to Map
         function getGeoJSON(){
-          $.getJSON("http://"+cartoDBusername+".cartodb.com/api/v2/sql?format=GeoJSON&q="+sqlQuery, function(data) {
+          $.getJSON("https://"+cartoDBusername+".cartodb.com/api/v2/sql?format=GeoJSON&q="+sqlQuery, function(data) {
             cartoDBPoints = L.geoJson(data,{
               pointToLayer: function(feature,latlng){
                 var marker = L.marker(latlng);
