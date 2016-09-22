@@ -66,7 +66,7 @@
 
     // Get CartoDB selection as GeoJSON and Add to Map
     function getGeoJSON(){
-      $.getJSON("https://"+cartoDBUsername+".cartodb.com/api/v2/sql?format=GeoJSON&q="+sqlQuery, function(data) {
+      $.getJSON("https://"+cartoDBUsername+".carto.com:443/api/v2/sql?format=GeoJSON&q="+sqlQuery, function(data) {
         cartoDBPoints = L.geoJson(data,{
           pointToLayer: function(feature,latlng){
             var marker = L.marker(latlng);
