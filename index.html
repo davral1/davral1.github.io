@@ -235,6 +235,26 @@
             dialog.dialog("close");
         };
 
+        // Submit data to the PHP using a jQuery Post method
+        var submitToProxy = function(q){
+          $.post("php/callProxy.php", { // <--- Enter the path to your callProxy.php file here
+            qurl:q,
+            cache: false,
+            timeStamp: new Date().getTime()
+          }, function(data) {
+            console.log(data);
+            refreshLayer();
+          });
+        };
+
+        // refresh the layers to show the updated dataset
+        function refreshLayer() {
+          if (map.hasLayer(cartoDBPoints)) {
+            map.removeLayer(cartoDBPoints);
+          };
+          getGeoJSON();
+        };
+
         
         
 
