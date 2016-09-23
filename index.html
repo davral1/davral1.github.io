@@ -72,6 +72,18 @@
             <input type="button" onclick="stopEdits()" value="Stop Your Editing Session">
         </div>
 
+        <div id="dialog" title="Point Information">   
+          <form>
+            <fieldset>
+              <label for="username">Your Name</label>
+              <input type="text" name="username" id="username" placeholder="Enter your Name" class="text ui-widget-content ui-corner-all">
+              <label for="description">About this Point</label>
+              <input type="text" name="description" id="description" placeholder="Description for this point" class="text ui-widget-content ui-corner-all">
+              <input type="submit" tabindex="-1" style="position:absolute; top:-1000px">
+            </fieldset>
+          </form>
+        </div>
+
 
     <script src="https://unpkg.com/leaflet@1.0.0-rc.3/dist/leaflet.js"></script>
     <script src="leaflet/leaflet.js"></script>
@@ -178,7 +190,51 @@
             dialog.dialog("open");
         });
 
-    
+        // Use the jQuery UI dialog to create a dialog and set options
+        var dialog = $("#dialog").dialog({
+          autoOpen: false,
+          height: 300,
+          width: 350,
+          modal: true,
+          position: {
+            my: "center center",
+            at: "center center",
+            of: "#map"
+          },
+          buttons: {
+            "Add to Database": setData,
+            Cancel: function() {
+              dialog.dialog("close");
+              map.removeLayer(drawnItems);
+            }
+          },
+          close: function() {
+            form[ 0 ].reset();
+            console.log("Dialog closed");
+          }
+        });
+
+        // Stops default form submission and ensures that setData or the cancel function run
+        var form = dialog.find("form").on("submit", function(event) {
+          event.preventDefault();
+        });
+
+        function setData() {
+            var enteredUsername = username.value;
+            var enteredDescription = description.value;
+            drawnItems.eachLayer(function (layer) {
+                var sql = "INSERT INTO public.data_collector (the_geom, description, name, latitude, longitude) VALUES (ST_SetSRID(ST_GeomFromGeoJSON('";
+                var a = layer.getLatLng();
+                var sql2 ='{"type":"Point","coordinates":[' + a.lng + "," + a.lat + "]}'),4326),'" + enteredDescription + "','" + enteredUsername + "','" + a.lat + "','" + a.lng +"')";
+                var pURL = sql+sql2;
+                submitToProxy(pURL);
+                console.log("Feature has been submitted to the Proxy");
+            });
+            map.removeLayer(drawnItems);
+            drawnItems = new L.FeatureGroup();
+            console.log("drawnItems has been cleared");
+            dialog.dialog("close");
+        };
 
         
         
